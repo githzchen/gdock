@@ -16,8 +16,8 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 
-sed -i '$a src-gi luci-theme-argon https://github.com/jerrykuku' feeds.conf.default
-sed -i '$a src-gi luci-app-argon-config https://github.com/jerrykuku' feeds.conf.default
+sed -i '$a src-git luci-theme-argon https://github.com/jerrykuku' feeds.conf.default
+sed -i '$a src-git luci-app-argon-config https://github.com/jerrykuku' feeds.conf.default
 
 # Add disable-ss.patch for redsocks2
 mkdir package/lean/redsocks2/patches
