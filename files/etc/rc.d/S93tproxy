@@ -1,0 +1,38 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2015 OpenWrt.org
+
+START=93
+STOP=10
+
+load_firewall() {
+	iptables -t nat -N PROXY
+	iptables -t nat -A PROXY -d 0.0.0.0/8 -j RETURN
+	iptables -t nat -A PROXY -d 10.0.0.0/8 -j RETURN
+	iptables -t nat -A PROXY -d 11.11.0.0/16 -j RETURN
+	iptables -t nat -A PROXY -d 127.0.0.0/8 -j RETURN
+	iptables -t nat -A PROXY -d 169.254.0.0/16 -j RETURN
+	iptables -t nat -A PROXY -d 172.16.0.0/12 -j RETURN
+	iptables -t nat -A PROXY -d 192.168.0.0/16 -j RETURN
+	iptables -t nat -A PROXY -d 224.0.0.0/4 -j RETURN
+	iptables -t nat -A PROXY -d 240.0.0.0/4 -j RETURN
+	# iptables -t nat -A PROXY -p tcp --dport 443 -j REDIRECT --to-ports 8080
+	iptables -t nat -A PROXY -p tcp -j REDIRECT --to-ports 8088
+	iptables -t nat -I zone_lan_prerouting -j PROXY
+	iptables -t nat -A OUTPUT -p tcp -j PROXY
+}
+
+flush_firewall() {
+	iptables -t nat -F PROXY
+	iptables -t nat -D zone_lan_prerouting -j PROXY
+	iptables -t nat -D OUTPUT -p tcp -j PROXY
+}
+
+start()
+{
+	load_firewall
+}
+
+stop()
+{
+	flush_firewall
+}

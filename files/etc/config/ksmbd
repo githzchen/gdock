@@ -1,0 +1,14 @@
+
+config globals
+	option workgroup 'WORKGROUP'
+	option description 'G-DOCK'
+
+config share
+	option browseable 'yes'
+	option guest_ok 'yes'
+	option create_mask '0666'
+	option dir_mask '0777'
+	option name 'G-DOCK'
+	option path '/opt'
+	option read_only 'no'
+

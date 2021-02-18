@@ -1,0 +1,20 @@
+
+config samba
+	option workgroup 'WORKGROUP'
+	option name 'G-DOCK'
+	option description 'G-DOCK'
+	option homes '0'
+	option autoshare '0'
+
+config sambashare
+	option auto '1'
+	option read_only 'no'
+	option create_mask '0666'
+	option dir_mask '0777'
+	option device 'sda1'
+	option browseable 'yes'
+	option users 'root'
+	option guest_ok 'no'
+	option path '/opt'
+	option name 'G-DOCK'
+
