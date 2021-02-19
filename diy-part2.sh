@@ -15,3 +15,4 @@
 
 chmod 0755 files/etc/init.d/tproxy
 chmod 0755 files/etc/init.d/redsocks2
+rm -rf package/lean/luci-theme-argon
