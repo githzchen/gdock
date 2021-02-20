@@ -1,8 +1,12 @@
 #!/bin/sh /etc/rc.common
 # Copyright (C) 2015 OpenWrt.org
 
-START=93
+START=99
 STOP=10
+
+boot() {
+	start
+}
 
 load_firewall() {
 	iptables -t nat -N PROXY
@@ -17,19 +21,23 @@ load_firewall() {
 	iptables -t nat -A PROXY -d 240.0.0.0/4 -j RETURN
 	# iptables -t nat -A PROXY -p tcp --dport 443 -j REDIRECT --to-ports 8080
 	iptables -t nat -A PROXY -p tcp -j REDIRECT --to-ports 8088
-	iptables -t nat -I zone_lan_prerouting -j PROXY
+	iptables -t nat -A PROXY -p udp -j REDIRECT --to-ports 8088
+	iptables -t nat -A PROXY -p icmp -j REDIRECT --to-ports 8088
+	# iptables -t nat -I zone_lan_prerouting -j PROXY
+	iptables -t nat -A PREROUTING -j PROXY
 	iptables -t nat -A OUTPUT -p tcp -j PROXY
 }
 
 flush_firewall() {
 	iptables -t nat -F PROXY
-	iptables -t nat -D zone_lan_prerouting -j PROXY
+	iptables -t nat -D PREROUTING -j PROXY
 	iptables -t nat -D OUTPUT -p tcp -j PROXY
 }
 
 start()
 {
 	load_firewall
+	echo  "tproxy start complete"
 }
 
 stop()
