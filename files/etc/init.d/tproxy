@@ -29,9 +29,12 @@ load_firewall() {
 }
 
 flush_firewall() {
-	iptables -t nat -F PROXY
 	iptables -t nat -D PREROUTING -j PROXY
 	iptables -t nat -D OUTPUT -p tcp -j PROXY
+	sleep 3s
+	iptables -t nat -F PROXY
+	sleep 3s
+	iptables -t nat -X PROXY
 }
 
 start()
