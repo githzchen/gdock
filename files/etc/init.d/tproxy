@@ -4,8 +4,16 @@
 START=99
 STOP=10
 
+monitor() {
+	if [ ! -f "/etc/crontabs/root" ] || [ -z "$(cat /etc/crontabs/root | grep proxymonitor)" ]; then
+  		sed -i '/proxymonitor/d' /etc/crontabs/root >/dev/null 2>&1
+  		echo "*/5 * * * * /bin/sh /etc/proxymonitor.sh" >> /etc/crontabs/root 
+	fi
+}
+
 boot() {
 	start
+	monitor
 }
 
 load_firewall() {
@@ -29,12 +37,9 @@ load_firewall() {
 }
 
 flush_firewall() {
+	iptables -t nat -F PROXY
 	iptables -t nat -D PREROUTING -j PROXY
 	iptables -t nat -D OUTPUT -p tcp -j PROXY
-	sleep 3s
-	iptables -t nat -F PROXY
-	sleep 3s
-	iptables -t nat -X PROXY
 }
 
 start()
