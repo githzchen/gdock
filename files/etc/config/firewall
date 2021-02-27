@@ -8,20 +8,19 @@ config defaults
 
 config zone
 	option name 'lan'
-	list network 'lan'
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
+	option network 'lan'
 
 config zone
 	option name 'wan'
-	list network 'wan'
-	list network 'wan6'
 	option input 'REJECT'
 	option output 'ACCEPT'
 	option forward 'REJECT'
 	option masq '1'
 	option mtu_fix '1'
+	option network 'wan wan6 sevpn'
 
 config forwarding
 	option src 'lan'
@@ -145,6 +144,11 @@ config rule
 	option dest_port '9100'
 	option name 'Allow-USB-Printer'
 
+config include 'mia'
+	option type 'script'
+	option path '/etc/mia.include'
+	option reload '1'
+
 config include 'miniupnpd'
 	option type 'script'
 	option path '/usr/share/miniupnpd/firewall.include'
@@ -154,6 +158,11 @@ config include 'miniupnpd'
 config include 'softethervpn'
 	option type 'script'
 	option path '/usr/share/softethervpn/firewall.include'
+	option reload '1'
+
+config include 'v2ray_server'
+	option type 'script'
+	option path '/var/etc/v2ray_server.include'
 	option reload '1'
 
 config rule 'kms'
@@ -166,10 +175,5 @@ config rule 'kms'
 config include 'shadowsocksr'
 	option type 'script'
 	option path '/var/etc/shadowsocksr.include'
-	option reload '1'
-
-config include 'mia'
-	option type 'script'
-	option path '/etc/mia.include'
 	option reload '1'
 

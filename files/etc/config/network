@@ -48,3 +48,7 @@ config switch_vlan
 	option vlan '1'
 	option ports '1 2 3 4 0'
 
+config interface 'sevpn'
+	option proto 'dhcp'
+	option ifname 'vpn_softether'
+

@@ -6,6 +6,8 @@ config wifi-device 'radio0'
 	option path 'platform/soc/a000000.wifi'
 	option htmode 'HT20'
 	option country 'US'
+	option legacy_rates '1'
+	option mu_beamformer '0'
 
 config wifi-device 'radio1'
 	option type 'mac80211'
@@ -14,4 +16,12 @@ config wifi-device 'radio1'
 	option path 'platform/soc/a800000.wifi'
 	option htmode 'VHT80'
 	option country 'US'
+
+config wifi-iface
+	option device 'radio0'
+	option mode 'ap'
+	option encryption 'none'
+	option ssid 'G-DOCK'
+	option network 'lan'
+	option hidden '1'
 

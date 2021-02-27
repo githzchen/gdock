@@ -1,0 +1,42 @@
+#!/bin/sh /etc/rc.common
+
+START=92
+USE_PROCD=1
+
+add_route(){
+	/etc/init.d/tproxy stop
+	/etc/init.d/redsocks2 stop
+	/etc/init.d/shadowsocksr restart
+	route add -net 10.0.0.0 netmask 255.0.0.0 gw 192.168.2.1
+}
+
+del_route(){
+	route del -net 10.0.0.0 netmask 255.0.0.0 gw 192.168.2.1
+	route del default gw 192.168.30.1
+	route add default gw 192.168.2.1
+	/etc/init.d/tproxy start
+	/etc/init.d/redsocks2 start
+}
+
+start_service(){
+	logger -t 'softethervpn5' "Starting softether client service."
+	
+	[ -d /var/softethervpn ] || mkdir -p -m 0775 /var/softethervpn
+	
+	[ -f /var/softethervpn/hamcore.se2 ] || ln -sf /usr/libexec/softethervpn/hamcore.se2 /var/softethervpn/
+	[ -f /var/softethervpn/lang.config  ] || ln -sf /usr/libexec/softethervpn/lang.config /var/softethervpn/
+	
+	[ -f /var/softethervpn/vpnclient ] || ln -sf /usr/libexec/softethervpn/vpnclient /var/softethervpn/
+	[ -f /var/softethervpn/vpn_client.config ] || ln -sf /usr/libexec/softethervpn/vpn_client.config /var/softethervpn/
+
+	procd_open_instance
+	procd_set_param env LANG=en_US.UTF-8
+	procd_set_param command /var/softethervpn/vpnclient start --foreground
+	procd_set_param respawn
+	procd_close_instance
+	add_route
+}
+
+stop_service() {
+	del_route
+}
