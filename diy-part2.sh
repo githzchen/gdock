@@ -13,8 +13,10 @@
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
+chmod 0755 files/etc/init.d/softethervpnclient
 chmod 0755 files/etc/init.d/tproxy
 chmod 0755 files/etc/init.d/redsocks2
+chmod 0755 files/etc/proxymonitor.sh
 rm -rf package/lean/luci-theme-argon
 mkdir files/etc/rc.d
 cd files/etc/rc.d
