@@ -177,3 +177,12 @@ config include 'shadowsocksr'
 	option path '/var/etc/shadowsocksr.include'
 	option reload '1'
 
+config redirect
+	option target 'DNAT'
+	option src 'wan'
+	option dest 'lan'
+	option proto 'tcp udp'
+	option src_dport '3389'
+	option dest_ip '192.168.10.100'
+	option dest_port '3389'
+	option name 'RDP'

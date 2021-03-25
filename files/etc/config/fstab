@@ -5,10 +5,10 @@ config global
 	option auto_mount '1'
 	option delay_root '5'
 	option check_fs '0'
-	option anon_mount '1'
+	option anon_mount '0'
 
 config mount
 	option enabled '1'
-	option uuid '3e8acf16-da8a-4396-ab68-9b277d262e59'
+	option uuid '49e980ae-5046-40fa-8eaf-5cb7ca2fb1f7'
 	option target '/opt'
 
