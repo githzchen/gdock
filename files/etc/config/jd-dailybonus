@@ -8,9 +8,8 @@ config global
 	option auto_update_time '23'
 	option auto_run '1'
 	option auto_run_time '0'
-	list Cookies 'pt_key=AAJgW9C0ADBMnVqXEi26Ws3diHiDCbcaIn851vJ3zPd9fPYdTGAY5g17Lgu1lS_n84ckWs-hGwE;pt_pin=jd_7beda182b8334;'
-	option serverchan 'SCU123388T95cdbdd41fd6c074b9a3186566372e6e5fa2ac9b37a1b'
 	option auto_run_time_h '0'
 	option auto_run_time_m '0'
-	option version '1.98'
+	list Cookies 'pt_key=AAJgvNDHADBwo449igqOgcl1V3pnjkmGuixmW6BrPL8YqLz6ubvX5MIAAZniv6G5KzKF7u45iT8;pt_pin=jd_7beda182b8334;'
+	option version '2.0.5'
 
