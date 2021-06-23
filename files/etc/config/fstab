@@ -1,14 +1,14 @@
 
 config global
 	option anon_swap '0'
+	option anon_mount '0'
 	option auto_swap '1'
 	option auto_mount '1'
 	option delay_root '5'
 	option check_fs '0'
-	option anon_mount '0'
 
 config mount
 	option enabled '1'
-	option uuid '49e980ae-5046-40fa-8eaf-5cb7ca2fb1f7'
+	option uuid '9c90ed24-09fe-4750-b54d-fb3d33e6d60c'
 	option target '/opt'
 
