@@ -10,6 +10,6 @@ config global
 	option auto_run_time '0'
 	option auto_run_time_h '0'
 	option auto_run_time_m '0'
-	list Cookies 'pt_key=AAJgvNDHADBwo449igqOgcl1V3pnjkmGuixmW6BrPL8YqLz6ubvX5MIAAZniv6G5KzKF7u45iT8;pt_pin=jd_7beda182b8334;'
 	option version '2.0.5'
+	list Cookies 'pt_key=AAJg5N7cADDilnVAT_ZTQRlMqNLxo2ll-ODDg61q9gbBaKMbmjItVsZ5rlycE-_caaQPWP-5FKQ;pt_pin=jd_7beda182b8334;'
 
