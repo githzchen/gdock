@@ -1,0 +1,16 @@
+
+config server
+	option debug '0'
+	option host '0.0.0.0'
+	option port '8080'
+	option read_buffer_size '10485760'
+	option cache_size '1000'
+	option root '/'
+	option no_trash '0'
+	option read_only '0'
+	option enable '1'
+	option cache_ttl '60'
+	option auth_user 'admin'
+	option auth_password '784533'
+	option refresh_token '24e409d65ebf4934b8de429dbd4507d9'
+
